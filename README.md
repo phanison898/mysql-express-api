@@ -9,7 +9,7 @@ cd mysql-express-api
 
 #### Step-2: Create .env file in the same directory and add following data
 
-```json
+```
 _USERNAME=you_mysql_db_username
 _PASSWORD=your_mysql_db_password
 CONNECTION_URL=your_mysql_server_url_(add localhost if you are running mysql workbench in your local system)
