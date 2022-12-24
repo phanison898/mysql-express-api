@@ -10,11 +10,11 @@ cd mysql-express-api
 #### Step-2: Create .env file in the same directory and add following data
 
 ```
-_USERNAME=you_mysql_db_username
-_PASSWORD=your_mysql_db_password
-CONNECTION_URL=your_mysql_server_url_(add localhost if you are running mysql workbench in your local system)
-DB_NAME=your_database_name
-PORT=port_number_for_api_server_(ex:5000)
+MYSQL_USERNAME    =     your_mysql_db_username
+MYSQL_PASSWORD    =     your_mysql_db_password
+MYSQL_HOST        =     your_hostname
+MYSQL_DATABASE    =     your_database_name
+MYSQL_PORT        =     port_number_for_api_server_(ex:5000)
 ```
 
 #### Step-3: Install node packages
