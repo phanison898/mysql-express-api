@@ -44,7 +44,7 @@ app.get("/users/:id", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
+app.post("/signin", (req, res) => {
   const { name, profile_url, bio } = req.body;
   con.query(
     `INSERT INTO users (name, profile_url, bio) VALUES (?, ?, ?)`,
@@ -54,6 +54,39 @@ app.post("/", (req, res) => {
       res.status(200).send(`Hello ${name}! Your details are uploaded Successfully`);
     }
   );
+});
+
+app.post("/", (req, res) => {
+  const { description, image_url, user_id } = req.body;
+  con.query(
+    `INSERT INTO posts (description, image_url, user_id) VALUES (?, ?, ?)`,
+    [description, image_url, user_id],
+    (err, result) => {
+      if (err) throw err;
+      res.status(200).send(`Post uploaded Successfully`);
+    }
+  );
+});
+
+app.patch("/posts/:id", (req, res) => {
+  const id = req.params.id;
+  const { description, image_url } = req.body;
+
+  let query = null;
+  let updatedColumn = null;
+
+  if ((description != undefined) & (image_url == undefined)) {
+    query = `UPDATE posts SET description=? WHERE id=?;`;
+    updatedColumn = description;
+  } else if ((description == undefined) & (image_url != undefined)) {
+    query = `UPDATE posts SET image_url=? WHERE id=?;`;
+    updatedColumn = image_url;
+  }
+
+  con.query(query, [updatedColumn, id], (err, result) => {
+    if (err) throw err;
+    res.status(200).send(`Post updated successfully`);
+  });
 });
 
 const con = mysql.createConnection({
