@@ -8,7 +8,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const PORT = process.env.PORT;
+const PORT = process.env.MYSQL_PORT;
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello! Welcome to Node-MySQL-API");
@@ -57,10 +57,10 @@ app.post("/", (req, res) => {
 });
 
 const con = mysql.createConnection({
-  host: process.env.CONNECTION_URL,
-  user: process.env._USERNAME,
-  password: process.env._PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
   connectionLimit: 10,
 });
 
