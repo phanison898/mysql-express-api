@@ -89,6 +89,27 @@ app.patch("/posts/:id", (req, res) => {
   });
 });
 
+app.patch("/users/:id", (req, res) => {
+  const id = req.params.id;
+  const { name, profile_url } = req.body;
+
+  let query = null;
+  let updatedColumn = null;
+
+  if ((name != undefined) & (profile_url == undefined)) {
+    query = `UPDATE users SET name=? WHERE id=?;`;
+    updatedColumn = name;
+  } else if ((name == undefined) & (profile_url != undefined)) {
+    query = `UPDATE users SET profile_url=? WHERE id=?;`;
+    updatedColumn = profile_url;
+  }
+
+  con.query(query, [updatedColumn, id], (err, result) => {
+    if (err) throw err;
+    res.status(200).send(`Users details updated successfully`);
+  });
+});
+
 const con = mysql.createConnection({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USERNAME,
