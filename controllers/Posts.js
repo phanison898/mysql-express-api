@@ -1,5 +1,4 @@
-import express from "express";
-import con from "./Connection";
+import con from "./Connection.js";
 
 // CREATE
 export const createPost = (req, res) => {
