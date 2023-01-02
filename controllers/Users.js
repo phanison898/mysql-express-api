@@ -1,14 +1,14 @@
 import con from "./Connection.js";
 
 export const createUser = (req, res) => {
-  const { name, profile_url, bio } = req.body;
+  const { first_name, last_name, email, password, confirm_password, profile_pic } = req.body;
 
   con.query(
     `INSERT INTO users(name, profile_url, bio) VALUES(?,?,?)`,
-    [name, profile_url, bio],
+    [first_name, last_name, email, password, profile_pic],
     (err, result) => {
       if (err) throw err;
-      res.status(200).send("User created successfully");
+      res.status(200).send({ message: "User created successfully", username: first_name });
     }
   );
 };

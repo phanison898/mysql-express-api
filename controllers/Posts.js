@@ -2,10 +2,10 @@ import con from "./Connection.js";
 
 // CREATE
 export const createPost = (req, res) => {
-  const { description, image_url, user_id } = req.body;
+  const { description, media, user_id } = req.body;
   con.query(
-    `INSERT INTO posts (description, image_url, user_id) VALUES (?, ?, ?)`,
-    [description, image_url, user_id],
+    `INSERT INTO posts (description, media, user_id) VALUES (?, ?, ?)`,
+    [description, media, user_id],
     (err, result) => {
       if (err) throw err;
       res.status(200).send(`Post uploaded Successfully`);
@@ -33,17 +33,17 @@ export const getPost = (req, res) => {
 // UPDATE
 export const updatePost = (req, res) => {
   const id = req.params.id;
-  const { description, image_url } = req.body;
+  const { description, media } = req.body;
 
   let query = null;
   let updatedColumn = null;
 
-  if ((description != undefined) & (image_url == undefined)) {
+  if ((description != undefined) & (media == undefined)) {
     query = `UPDATE posts SET description=? WHERE id=?;`;
     updatedColumn = description;
-  } else if ((description == undefined) & (image_url != undefined)) {
-    query = `UPDATE posts SET image_url=? WHERE id=?;`;
-    updatedColumn = image_url;
+  } else if ((description == undefined) & (media != undefined)) {
+    query = `UPDATE posts SET media=? WHERE id=?;`;
+    updatedColumn = media;
   }
 
   con.query(query, [updatedColumn, id], (err, result) => {

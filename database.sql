@@ -1,5 +1,5 @@
 -- Create database
-CREATE DATABASE memories;
+CREATE DATABASE social_media;
 
 -- Use the database
 USE memories;
@@ -10,7 +10,7 @@ CREATE TABLE users(
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    mobile VARCHAR(255),
+    password VARCHAR(255)  NOT NULL,
     profile_pic VARCHAR(255),
     PRIMARY KEY (id)
 );
