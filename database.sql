@@ -2,7 +2,7 @@
 CREATE DATABASE social_media;
 
 -- Use the database
-USE memories;
+USE social_media;
 
 -- Create table-1 for users
 CREATE TABLE users(
